@@ -1,0 +1,22 @@
+newmtl minotaur_surf
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+map_Kd CH_NPC_MOB_Minotaurs_A01_D_TOM.jpg
+map_bump CH_NPC_MOB_Minotaurs_A01_N_TOM.jpg
+map_Ks CH_NPC_MOB_Minotaurs_A01_SP_TOM.jpg
+map_d CH_NPC_MOB_Minotaurs_A01_D_TOM.jpg
+
+
+newmtl axe_surf
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+map_Kd CH_NPC_WP_TAX_MT_A01_D_TOM.jpg
+map_bump CH_NPC_WP_TAX_MT_A01_N_TOM.jpg
+map_Ks CH_NPC_WP_TAX_MT_A01_SP_TOM.jpg
+map_d CH_NPC_WP_TAX_MT_A01_D_TOM.jpg
