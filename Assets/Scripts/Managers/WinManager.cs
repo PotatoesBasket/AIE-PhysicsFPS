@@ -7,6 +7,7 @@ public class WinManager : MonoBehaviour
     public static WinManager current = null;
 
     [SerializeField] GameObject winPanel = null;
+    [SerializeField] GameObject HUDPanel = null;
     [SerializeField] Text enemyCount = null;
 
     List<Enemy> enemies = new List<Enemy>();
@@ -35,6 +36,7 @@ public class WinManager : MonoBehaviour
         {
             GameManager.current.SetPauseState(true);
             winPanel.SetActive(true);
+            HUDPanel.SetActive(false);
             enabled = false; // stop running updates on this script
         }
     }

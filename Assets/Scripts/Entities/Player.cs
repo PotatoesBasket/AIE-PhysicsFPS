@@ -6,7 +6,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float pushForce = 0;
     [SerializeField] float kickForce = 0;
-    [SerializeField] GameObject deathScreen = null;
+    [SerializeField] GameObject deathPanel = null;
+    [SerializeField] GameObject HUDPanel = null;
 
     [SerializeField] ExplosiveItemController grenades = null;
     [SerializeField] ExplosiveItemController mines = null;
@@ -34,7 +35,8 @@ public class Player : MonoBehaviour
 
     void OnDeath()
     {
-        deathScreen.SetActive(true);
+        deathPanel.SetActive(true);
+        HUDPanel.SetActive(false);
         GameManager.current.SetPauseState(true);
     }
 

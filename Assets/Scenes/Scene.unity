@@ -24083,6 +24083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winPanel: {fileID: 1997673284}
+  HUDPanel: {fileID: 1186414592}
   enemyCount: {fileID: 1291870616}
 --- !u!1001 &1048833062
 PrefabInstance:
@@ -52342,7 +52343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013603223344, guid: 65feeeb562c61c744aa87b8eb394ffcf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.989895
+      value: -12.95
       objectReference: {fileID: 0}
     - target: {fileID: 4000013603223344, guid: 65feeeb562c61c744aa87b8eb394ffcf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -55010,7 +55011,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pushForce: 50
   kickForce: 3000
-  deathScreen: {fileID: 1127591132}
+  deathPanel: {fileID: 1127591132}
+  HUDPanel: {fileID: 1186414592}
   grenades: {fileID: 387408364}
   mines: {fileID: 1478556751}
 --- !u!82 &1690427564
