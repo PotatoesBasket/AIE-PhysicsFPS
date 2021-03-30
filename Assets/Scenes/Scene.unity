@@ -10021,14 +10021,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 429089014}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b416fbce5a38cc47a3a1e709f95f5e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cfuStatus: PSXEffects v1.14.1 - update available (click to update).
   sections: 01010100
-  customRes: {x: 383, y: 215}
+  customRes: {x: 323, y: 182}
   resolutionFactor: 2
   limitFramerate: 60
   skipFrames: 0
@@ -62456,6 +62456,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7319295533092586310, guid: 0895de832df1f014a977235aef1fdc8a,
+        type: 3}
+      propertyPath: loopSpeed
+      value: 0.29
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0895de832df1f014a977235aef1fdc8a, type: 3}

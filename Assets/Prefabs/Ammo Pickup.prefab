@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 7341698926121744111}
   - component: {fileID: 7333129459356949707}
   - component: {fileID: 7319295533092586310}
+  - component: {fileID: 17518422958804277}
   - component: {fileID: 7319295533092586311}
   m_Layer: 0
-  m_Name: Grenade Pickup
+  m_Name: Ammo Pickup
   m_TagString: Ammo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,8 +93,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07ced10a9e69144d9b6dffbdaaee232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loopTime: 3
+  distance: 0.15
+--- !u!114 &17518422958804277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7319295533092586313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06bf21f61ade6bd4489267c8b2b2a3e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   spinSpeed: 50
-  floatSpeed: 0.008
 --- !u!65 &7319295533092586311
 BoxCollider:
   m_ObjectHideFlags: 0
