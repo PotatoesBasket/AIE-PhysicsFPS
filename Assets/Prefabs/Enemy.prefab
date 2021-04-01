@@ -292,6 +292,9 @@ MonoBehaviour:
   repeatAttackDelay: 1.5
   attackDamage: 60
   attackDistance: 2
+  pathStatus: 0
+  gotPath: 0
+  pathPending: 0
 --- !u!114 &433442803597285490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,7 +363,7 @@ NavMeshAgent:
   m_Height: 1.7
   m_BaseOffset: -0.1
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 1
 --- !u!135 &5313343035975155496
 SphereCollider:
   m_ObjectHideFlags: 0

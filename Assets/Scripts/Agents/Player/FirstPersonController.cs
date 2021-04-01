@@ -5,6 +5,7 @@ public class FirstPersonController : MonoBehaviour
 {
     CharacterController character;
     Camera cameraObject;
+    SphereCollider groundCheck;
 
     [SerializeField] FirearmController firearm = null;
     [SerializeField] ExplosiveItemController grenades = null;
@@ -34,6 +35,7 @@ public class FirstPersonController : MonoBehaviour
     {
         character = GetComponent<CharacterController>();
         cameraObject = Camera.main;
+        groundCheck = GetComponent<SphereCollider>();
 
         currentHeading = transform.rotation.eulerAngles.y;
         currentPitch = cameraObject.transform.rotation.eulerAngles.x;
@@ -196,7 +198,7 @@ public class FirstPersonController : MonoBehaviour
 
     bool IsGrounded()
     {
-        if (Physics.Raycast(transform.position, -transform.up, groundRayDist, groundLayerMask))
+        if (Physics.CheckSphere(transform.TransformPoint(groundCheck.center), groundCheck.radius, groundLayerMask, QueryTriggerInteraction.Ignore))
             return true;
         else
             return false;
@@ -205,11 +207,5 @@ public class FirstPersonController : MonoBehaviour
     public void ResetVelocity()
     {
         currentVelocity = Vector3.zero;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = IsGrounded() ? Color.green : Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + -transform.up * groundRayDist);
     }
 }

@@ -77,15 +77,21 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public NavMeshPathStatus pathStatus;
+    public bool gotPath;
+    public bool pathPending;
+
     void WaitForValidPath()
     {
-        NMAgent.isStopped = true;
-
         Quaternion lookAtPlayer = Quaternion.LookRotation(player.transform.position - transform.position, Vector3.up);
         transform.rotation = Quaternion.Euler(0, lookAtPlayer.eulerAngles.y, 0);
 
         // update path to player
         NMAgent.SetDestination(player.transform.position);
+
+        pathStatus = NMAgent.pathStatus;
+        gotPath = NMAgent.hasPath;
+        pathPending = NMAgent.pathPending;
 
         // check if path is valid
         if (NMAgent.pathStatus == NavMeshPathStatus.PathComplete)
@@ -109,6 +115,17 @@ public class Enemy : MonoBehaviour
                 animator.SetBool("isChasing", true);
             }
         }
+        else if (pathPending == false)
+        {
+            /*Note: For some reason when the player enters an unreachable area, then becomes reachable again,
+            the path will not be recalculated until the player crosses into a second reachable pathing node.
+            This helps a little bit, I think. I re-baked the map after so it ended up not really mattering anyway.*/
+
+            NavMeshPath path = new NavMeshPath();
+            
+            if (NMAgent.CalculatePath(player.transform.position, path))
+                NMAgent.SetPath(path);
+        }
     }
 
     void ChasePlayer()
@@ -121,6 +138,7 @@ public class Enemy : MonoBehaviour
         {
             // if not, switch to waiting state
             currentState = State.WAITINGFORPATH;
+            NMAgent.isStopped = true;
             animator.SetBool("isIdle", true);
             return;
         }
@@ -172,6 +190,7 @@ public class Enemy : MonoBehaviour
         else
         {
             currentState = State.WAITINGFORPATH;
+            NMAgent.isStopped = true;
             animator.SetBool("isIdle", true);
         }
     }

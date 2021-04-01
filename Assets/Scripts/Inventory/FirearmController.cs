@@ -27,9 +27,11 @@ public class FirearmController : MonoBehaviour
         UpdateReticle();
     }
 
+    // Checks if a damageable object (ie. any solid collider in enemy or object layers) is being targeted and updates UI reticle color accordingly
     void UpdateReticle()
     {
-        if (Physics.Raycast(transform.position, transform.forward, shotRange, layerMask))
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, shotRange, layerMask, QueryTriggerInteraction.Ignore)
+            && (hit.transform.gameObject.layer == 10 || hit.transform.gameObject.layer == 11))
         {
             if (!reticleHighlighted && reticle != null)
             {
