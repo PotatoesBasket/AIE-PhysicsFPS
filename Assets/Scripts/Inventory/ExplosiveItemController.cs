@@ -36,7 +36,7 @@ public class ExplosiveItemController : MonoBehaviour
                 UpdateHUDCounter();
 
                 if (audioSource != null)
-                    audioSource.PlayOneShot(audioSource.clip);
+                    audioSource.PlayOneShot(AudioManager.current.throwItem);
             }
         }
     }

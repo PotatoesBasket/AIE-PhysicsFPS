@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.17038716, g: 0.16563621, b: 0.15990393, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -50,7 +50,7 @@ LightmapSettings:
     m_BounceScale: 1
     m_IndirectOutputScale: 1
     m_AlbedoBoost: 1
-    m_EnvironmentLightingMode: 0
+    m_EnvironmentLightingMode: 1
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
@@ -96,7 +96,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 014a139970c443a49b314900f36f5539,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -3533,7 +3534,7 @@ PrefabInstance:
     - target: {fileID: 433442803597285490, guid: 4eac836bfead57744a16c8798fd49d0c,
         type: 3}
       propertyPath: maxHealth
-      value: 1000
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eac836bfead57744a16c8798fd49d0c, type: 3}
@@ -4066,6 +4067,7 @@ MonoBehaviour:
   fleshShotHit: {fileID: 8300000, guid: 6a03f314feff76d4599c13f302b6f61e, type: 3}
   grenadeExplosion: {fileID: 8300000, guid: ecda61556b5ff5742b6a89f6e0596cd5, type: 3}
   ammoPickup: {fileID: 8300000, guid: 7f89d732b4b0f424b82acb1810b5899e, type: 3}
+  throwItem: {fileID: 8300000, guid: 10c7b2df68d0a9945846e2aa3823ec2f, type: 3}
   assaultRifleShots: {fileID: 522274172}
   humanDeathGrunts: {fileID: 822181533}
 --- !u!1001 &199422152
@@ -10248,7 +10250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cfuStatus: PSXEffects v1.14.1 - update available (click to update).
   sections: 01010100
-  customRes: {x: 311, y: 175}
+  customRes: {x: 303, y: 170}
   resolutionFactor: 2
   limitFramerate: 60
   skipFrames: 0
@@ -10657,7 +10659,7 @@ PrefabInstance:
     - target: {fileID: 433442803597285490, guid: 4eac836bfead57744a16c8798fd49d0c,
         type: 3}
       propertyPath: maxHealth
-      value: 1000
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eac836bfead57744a16c8798fd49d0c, type: 3}
@@ -15394,7 +15396,7 @@ Light:
   serializedVersion: 9
   m_Type: 1
   m_Color: {r: 0.5660378, g: 0.46450078, b: 0.4565682, a: 1}
-  m_Intensity: 0.8
+  m_Intensity: 1.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -15433,7 +15435,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -18008,7 +18010,7 @@ PrefabInstance:
     - target: {fileID: 433442803597285490, guid: 4eac836bfead57744a16c8798fd49d0c,
         type: 3}
       propertyPath: maxHealth
-      value: 500
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eac836bfead57744a16c8798fd49d0c, type: 3}
@@ -24980,7 +24982,7 @@ PrefabInstance:
     - target: {fileID: 433442803597285490, guid: 4eac836bfead57744a16c8798fd49d0c,
         type: 3}
       propertyPath: maxHealth
-      value: 1000
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eac836bfead57744a16c8798fd49d0c, type: 3}
@@ -41727,7 +41729,7 @@ PrefabInstance:
     - target: {fileID: 433442803597285490, guid: 4eac836bfead57744a16c8798fd49d0c,
         type: 3}
       propertyPath: maxHealth
-      value: 500
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eac836bfead57744a16c8798fd49d0c, type: 3}
@@ -43979,7 +43981,7 @@ PrefabInstance:
     - target: {fileID: 433442803597285490, guid: 4eac836bfead57744a16c8798fd49d0c,
         type: 3}
       propertyPath: maxHealth
-      value: 1000
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eac836bfead57744a16c8798fd49d0c, type: 3}
@@ -49206,7 +49208,7 @@ PrefabInstance:
     - target: {fileID: 433442803597285490, guid: 4eac836bfead57744a16c8798fd49d0c,
         type: 3}
       propertyPath: maxHealth
-      value: 500
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eac836bfead57744a16c8798fd49d0c, type: 3}
@@ -55816,19 +55818,17 @@ MonoBehaviour:
   firearm: {fileID: 362543734}
   grenades: {fileID: 387408364}
   mines: {fileID: 1478556751}
-  walkAcceleration: 30
-  runAcceleration: 100
-  maxWalkVelocity: 4
-  maxRunVelocity: 10
-  gravity: 70
-  jumpAcceleration: 2000
-  maxVerticalVelocity: 300
-  mass: 100
-  drag: 5
-  groundRayDist: 0.93
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 3329
+  walkAcceleration: 0.5
+  runAcceleration: 2
+  maxWalkVelocity: 3
+  maxRunVelocity: 5
+  maxVerticalVelocity: 10
+  maxJumpHeight: 2
+  timeToApex: 0.4
+  drag: 4
 --- !u!4 &1690427560
 Transform:
   m_ObjectHideFlags: 0
@@ -56003,8 +56003,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.26
-  m_Center: {x: 0, y: -0.65, z: 0}
+  m_Radius: 0.23
+  m_Center: {x: 0, y: -0.72, z: 0}
 --- !u!1001 &1693301721
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57104,7 +57104,7 @@ PrefabInstance:
     - target: {fileID: 433442803597285490, guid: 4eac836bfead57744a16c8798fd49d0c,
         type: 3}
       propertyPath: maxHealth
-      value: 1000
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eac836bfead57744a16c8798fd49d0c, type: 3}
@@ -57333,7 +57333,7 @@ PrefabInstance:
     - target: {fileID: 433442803597285490, guid: 4eac836bfead57744a16c8798fd49d0c,
         type: 3}
       propertyPath: maxHealth
-      value: 500
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eac836bfead57744a16c8798fd49d0c, type: 3}
@@ -63857,7 +63857,7 @@ PrefabInstance:
     - target: {fileID: 433442803597285490, guid: 4eac836bfead57744a16c8798fd49d0c,
         type: 3}
       propertyPath: maxHealth
-      value: 500
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eac836bfead57744a16c8798fd49d0c, type: 3}
@@ -65358,7 +65358,7 @@ Light:
   serializedVersion: 9
   m_Type: 1
   m_Color: {r: 0.33830652, g: 0.31617126, b: 0.46226418, a: 1}
-  m_Intensity: 0.8
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -65397,7 +65397,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1

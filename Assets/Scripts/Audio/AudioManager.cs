@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip fleshShotHit;
     public AudioClip grenadeExplosion;
     public AudioClip ammoPickup;
+    public AudioClip throwItem;
 
     public RandomizedSound assaultRifleShots;
     public RandomizedSound humanDeathGrunts;
