@@ -1,30 +1,31 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class FirstPersonController : MonoBehaviour
 {
     [SerializeField] FirearmController firearm = null;
     [SerializeField] ExplosiveItemController grenades = null;
     [SerializeField] ExplosiveItemController mines = null;
+
+    [SerializeField] SphereCollider groundCheckArea = null;
     [SerializeField] LayerMask groundLayerMask = 0;
 
     // horizontal movement
     [SerializeField] float walkAcceleration = 0;
     [SerializeField] float runAcceleration = 0;
-    [SerializeField] float maxWalkVelocity = 0;
-    [SerializeField] float maxRunVelocity = 0;
+    [SerializeField] float maxWalkSpeed = 0;
+    [SerializeField] float maxRunSpeed = 0;
 
     // vertical movement
+    [SerializeField] float jumpVelocity = 0;
     [SerializeField] float maxVerticalVelocity = 0;
-    [SerializeField] float maxJumpHeight = 0;
-    [SerializeField] float timeToApex = 0;
+    [SerializeField] float fallMultiplier = 0;
+    [SerializeField] float lowJumpMultiplier = 0;
 
     [SerializeField] float drag = 0;
 
 
     CharacterController character;
     Camera cameraObject;
-    SphereCollider groundCheck;
 
     Vector3 currentVelocity;
 
@@ -32,13 +33,9 @@ public class FirstPersonController : MonoBehaviour
     {
         character = GetComponent<CharacterController>();
         cameraObject = Camera.main;
-        groundCheck = GetComponent<SphereCollider>();
 
         currentHeading = transform.rotation.eulerAngles.y;
         currentPitch = cameraObject.transform.rotation.eulerAngles.x;
-
-        gravity = 2 * maxJumpHeight / Mathf.Pow(timeToApex, 2);
-        initialJumpVel = Mathf.Sqrt(2 * gravity * maxJumpHeight);
     }
 
     private void Update()
@@ -47,6 +44,7 @@ public class FirstPersonController : MonoBehaviour
         {
             GetInput();
             Looking();
+            Jumping();
 
             Shooting();
             PlacingMines();
@@ -61,17 +59,18 @@ public class FirstPersonController : MonoBehaviour
             Drag();
             Moving();
             Gravity();
-            Jumping();
-        }
 
-        // move character
-        character.Move(transform.TransformVector(currentVelocity) * Time.fixedDeltaTime);
+            // move character
+            character.Move(transform.TransformVector(currentVelocity) * Time.fixedDeltaTime);
+        }
     }
 
     Vector2 mouse;
     Vector2 joystick;
     bool runInput;
     bool jumpInput;
+    bool longJumpInput;
+
     bool shootInput;
     bool throwGrenadeInput;
     bool placeMineInput;
@@ -86,9 +85,7 @@ public class FirstPersonController : MonoBehaviour
 
         runInput = Input.GetButton("Run");
         jumpInput = Input.GetButtonDown("Jump");
-
-        if (jumpInput)
-            initJump = true;
+        longJumpInput = Input.GetButton("Jump");
 
         shootInput = Input.GetMouseButtonDown(0);
         placeMineInput = Input.GetMouseButtonDown(1);
@@ -117,20 +114,17 @@ public class FirstPersonController : MonoBehaviour
     void Drag()
     {
         // apply drag
-        float hVel = new Vector3(currentVelocity.x, 0, currentVelocity.z).magnitude;
-        float vVel = currentVelocity.y;
-
+        Vector3 horizontalVelocity = new Vector3(currentVelocity.x, 0, currentVelocity.z);
         currentVelocity -= currentVelocity * drag * Time.fixedDeltaTime;
 
         // cancel out movements that are too small
-        if (currentVelocity.magnitude <= 0.05f)
+        if (currentVelocity.magnitude <= 0.005f)
             currentVelocity = Vector3.zero;
 
         // cap horizontal velocity
-        Vector3 horizontalVelocity = new Vector3(currentVelocity.x, 0, currentVelocity.z);
-        float v = horizontalVelocity.magnitude;
+        float horizontalSpeed = horizontalVelocity.magnitude;
 
-        if (v > CurrentMaxHorizontalVelocity()) // walking/running different cap
+        if (horizontalSpeed > CurrentMaxHorizontalVelocity()) // walking/running different cap
         {
             Vector3 newVel = horizontalVelocity.normalized * CurrentMaxHorizontalVelocity();
             currentVelocity = new Vector3(newVel.x, currentVelocity.y, newVel.z);
@@ -147,42 +141,21 @@ public class FirstPersonController : MonoBehaviour
         currentVelocity += acceleration;
     }
 
-    float gravity = 0;
-
     void Gravity()
     {
-        if (!IsGrounded())
-        {
-            Vector3 acceleration = Vector3.down * gravity;
-            currentVelocity += acceleration * Time.fixedDeltaTime;
-        }
+        Vector3 acceleration = Vector3.up * Physics.gravity.y;
+        currentVelocity += acceleration * Time.fixedDeltaTime;
+
+        if (currentVelocity.y <= 0)
+            currentVelocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+        else if (currentVelocity.y > 0 && !longJumpInput)
+            currentVelocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
     }
 
-    bool initJump = false;
-    bool isJumping = false;
-    float initialJumpVel = 0;
-
     void Jumping()
-    { 
-        if (!IsGrounded() || isJumping)
-            initJump = false;
-
-        if (initJump)
-        {
-            currentVelocity.y = initialJumpVel;
-
-            isJumping = true;
-            initJump = false;
-        }
-
-        if (isJumping)
-        {
-            if (currentVelocity.y < 0)
-            {
-                isJumping = false;
-                currentVelocity.y = 0;
-            }
-        }
+    {
+        if (jumpInput && IsGrounded())
+            currentVelocity.y = jumpVelocity;
     }
 
     void Shooting()
@@ -220,16 +193,16 @@ public class FirstPersonController : MonoBehaviour
         float velocity;
 
         if (runInput)
-            velocity = maxRunVelocity;
+            velocity = maxRunSpeed;
         else
-            velocity = maxWalkVelocity;
+            velocity = maxWalkSpeed;
 
         return velocity;
     }
 
     bool IsGrounded()
     {
-        if (Physics.CheckSphere(transform.TransformPoint(groundCheck.center), groundCheck.radius, groundLayerMask, QueryTriggerInteraction.Ignore))
+        if (Physics.CheckSphere(transform.TransformPoint(groundCheckArea.center), groundCheckArea.radius, groundLayerMask, QueryTriggerInteraction.Ignore))
             return true;
         else
             return false;
@@ -238,5 +211,14 @@ public class FirstPersonController : MonoBehaviour
     public void ResetVelocity()
     {
         currentVelocity = Vector3.zero;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (groundCheckArea != null)
+        {
+            Gizmos.color = IsGrounded() ? Color.green : Color.red;
+            Gizmos.DrawSphere(transform.TransformPoint(groundCheckArea.center), groundCheckArea.radius);
+        }
     }
 }

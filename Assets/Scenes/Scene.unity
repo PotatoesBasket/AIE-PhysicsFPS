@@ -55817,16 +55817,18 @@ MonoBehaviour:
   firearm: {fileID: 362543734}
   grenades: {fileID: 387408364}
   mines: {fileID: 1478556751}
+  groundCheckArea: {fileID: 1690427565}
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 3329
   walkAcceleration: 0.5
   runAcceleration: 2
-  maxWalkVelocity: 3
-  maxRunVelocity: 5
-  maxVerticalVelocity: 10
-  maxJumpHeight: 2
-  timeToApex: 0.4
+  maxWalkSpeed: 3
+  maxRunSpeed: 6
+  jumpVelocity: 8
+  maxVerticalVelocity: 20
+  fallMultiplier: 3
+  lowJumpMultiplier: 5
   drag: 4
 --- !u!4 &1690427560
 Transform:
